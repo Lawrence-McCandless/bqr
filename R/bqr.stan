@@ -1,8 +1,8 @@
 functions{
-real ald_lpdf(real x, real u, real sig, real tau){
+real ald_lpdf(real x, real u, real sig, real tau){ // user-defined log pdf of asymetric Laplace distribution;
   real y;
   if (x<u)
-    y = log((tau*(1-tau)/sig)*exp(-(tau-1)*(x-u)/sig));// for formula see page 4 of OCR notes;
+    y = log((tau*(1-tau)/sig)*exp(-(tau-1)*(x-u)/sig));
   if (x>=u)
     y = log((tau*(1-tau)/sig)*exp(-tau*(x-u)/sig)); 
   return y;
@@ -11,14 +11,14 @@ real ald_lpdf(real x, real u, real sig, real tau){
 data {
   int<lower=0> n;
   int<lower=0> p;
-  vector[n] y;
-  array[n] row_vector[p] x;
-  real<lower=0> tau;
+  vector[n] y; // outcome variable;
+  array[n] row_vector[p] x; // predictor variables;
+  real<lower=0> tau; // quantile;
   
 }
 parameters {
-  vector[p] beta;
-  real sig;
+  vector[p] beta; // regression coefficients;
+  real sig; // scale parameter; 
 }
 model {
   for (i in 1:n){
