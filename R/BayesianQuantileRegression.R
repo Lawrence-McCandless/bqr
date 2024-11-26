@@ -1,5 +1,4 @@
-rm(list=ls(all=TRUE)); 
-library(MASS); library(rstan); library(quantreg); library(bayesQR)
+library(rstan); library(quantreg)
 options(mc.cores = parallel::detectCores())
 
 n <- 500;
