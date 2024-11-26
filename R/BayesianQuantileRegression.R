@@ -21,16 +21,30 @@ y <- round(rnorm(n, mean=betax1.true * x1 + betax2.true * x2, sd=sigmay.true * (
 y <- rpois(n, lambda=exp(betax1.true * x1 + betax2.true * x2)) ## Model 2
 
 ## Conventional quantle regression
-rq(y ~ x + c, tau=tau, method="br"); tp <- coef(summary(tmp)); print(tp)
+rq(y ~ x1 + x2, tau=tau, method="br")
 
 ## Bayesian quantile regression using statn
 # Prepare teh dataset 
-data.stan <- list(n=length(y), p=p+2, y=y, x=cbind(1,x,c), tau=tau) 
+data.stan <- list(
+  n=length(y), 
+  p=3, 
+  y=y, 
+  x=cbind(1,x1,x2), 
+  tau=tau
+) 
 
 # MCMC sampling from posterior distribution
-tmp <- sampling(b.aldsig, data=data.stan, chains=5, iter=4000, warmup=1000, thin=1, control=list(max_treedepth=7), verbose=TRUE) 
+results <- stan(
+  file="bqr.stan"
+  data=data.stan, 
+  chains=5, 
+  iter=4000, 
+  warmup=1000, 
+  control=list(max_treedepth=5), 
+  verbose=TRUE
+) 
   
-summary(tmp, pars=c("beta"))
+summary(results, pars=c("beta"))
 
 ## MCMC diagnostics
 plot(tmp, plotfun="trace")
