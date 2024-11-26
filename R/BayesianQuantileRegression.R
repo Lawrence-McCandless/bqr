@@ -1,18 +1,18 @@
 library(rstan); library(quantreg)
 options(mc.cores = parallel::detectCores())
 
-n <- 500;
-beta0.true <- 0; # y-intercept
-betax.true <- 1; # association between X and Y
-gamm0.true <- 0; sigmay.true <- 1
-gammx.true <- 0
+n <- 1000;
+betax1.true <- 0.5; # association between X1 and Y
+betax2.true <- 0.5; # association between X2 and Y
+sigmay.true <- 1; # variance of errors of Y
 
 tau <- 0.5
 
 # generate z from a beta distribution for correlated binary predictor variables
 z <-rbeta(n, beta.cor, beta.cor)
 # generate exposure variable x
-x <- rbinom(n, 1, p=z); 
+x1 <- rbinom(n, 1, p=z); 
+x1 <- rbinom(n, 1, p=z); 
 # generate confounding variable vector c
 c <- matrix(NA, nrow=n, ncol=p); for (l in 1:p){c[,l] <- rbinom(n, 1, p=z)}
 
