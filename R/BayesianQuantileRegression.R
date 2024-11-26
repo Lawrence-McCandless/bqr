@@ -15,10 +15,10 @@ x1 <- rbinom(n, 1, p=z);
 x2 <- rbinom(n, 1, p=z); 
 
 ## Generate Y from a rounded Gaussian random variable response
-y <- round(rnorm(n, mean=beta0.true + betax.true * x + c %*% rep(betac1.true, p), sd=sigmay.true * (1+gammx.true * x)), digits=0) ## Model 1
+y <- round(rnorm(n, mean=betax1.true * x1 + betax2.true * x2, sd=sigmay.true * (1+ 0.5 * x1)), digits=0) ## Model 1
 
 ## Alternatively, generate generate Y from a rounded Poisson random variable response
-y <- rpois(n, lambda=exp(beta0.true + betax.true * x + c %*% rep(betac1.true, p))) ## rounded linear heteroscdasticity
+y <- rpois(n, lambda=exp(betax1.true * x1 + betax2.true * x2)) ## Model 2
 
 ## Conventional quantle regression
 rq(y ~ x + c, tau=tau, method="br"); tp <- coef(summary(tmp)); print(tp)
