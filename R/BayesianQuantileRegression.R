@@ -12,12 +12,10 @@ tau <- 0.5
 z <-rbeta(n, beta.cor, beta.cor)
 # generate exposure variable x
 x1 <- rbinom(n, 1, p=z); 
-x1 <- rbinom(n, 1, p=z); 
-# generate confounding variable vector c
-c <- matrix(NA, nrow=n, ncol=p); for (l in 1:p){c[,l] <- rbinom(n, 1, p=z)}
+x2 <- rbinom(n, 1, p=z); 
 
 ## Generate Y from a rounded Gaussian random variable response
-y <- round(rnorm(n, mean=beta0.true + betax.true * x + c %*% rep(betac1.true, p), sd=sigmay.true * (1+gammx.true * x)), digits=0) ## rounded linear heteroscdasticity
+y <- round(rnorm(n, mean=beta0.true + betax.true * x + c %*% rep(betac1.true, p), sd=sigmay.true * (1+gammx.true * x)), digits=0) ## Model 1
 
 ## Alternatively, generate generate Y from a rounded Poisson random variable response
 y <- rpois(n, lambda=exp(beta0.true + betax.true * x + c %*% rep(betac1.true, p))) ## rounded linear heteroscdasticity
