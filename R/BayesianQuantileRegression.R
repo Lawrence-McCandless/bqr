@@ -24,7 +24,7 @@ y <- rpois(n, lambda=exp(betax1.true * x1 + betax2.true * x2)) ## Model 2
 rq(y ~ x1 + x2, tau=tau, method="br")
 
 ## Bayesian quantile regression using stan
-# Prepare teh dataset 
+# Prepare the dataset 
 data.stan <- list(
   n=length(y), 
   p=3, 
