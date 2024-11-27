@@ -15,10 +15,11 @@ x1 <- rbinom(n, 1, p=z);
 x2 <- rbinom(n, 1, p=z); 
 
 ## Generate Y from a rounded Gaussian random variable response
-y <- round(rnorm(n, mean=betax1.true * x1 + betax2.true * x2, sd=sigmay.true * (1+ 0.5 * x1)), digits=0) ## Model 1
+y <- round(rnorm(n, mean=betax1.true * x1 + betax2.true * x2, sd=sigmay.true * (1+ 0.5 * x1)), digits=0) 
 
 ## Alternatively, generate generate Y from a rounded Poisson random variable response
-y <- rpois(n, lambda=exp(betax1.true * x1 + betax2.true * x2)) ## Model 2
+y <- rpois(n, lambda=exp(betax1.true * x1 + betax2.true * x2)) 
+y[sample(1:n, 0.25*n)] <- 0
 
 ## Bayesian quantile regression using stan
 # Prepare the dataset 
