@@ -1,2 +1,2 @@
 # Bayesian Quantile Regression
-Codes for Bayesian quantile regression in R and Stan based on the asymetric Laplace distribution
+R and Stan code for Bayesian quantile regression based on the asymetric Laplace distribution
