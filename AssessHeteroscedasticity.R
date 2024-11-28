@@ -1,4 +1,4 @@
-# Bayesian method to assess the presence of heteroscedastic errors of the outcome variable
+# Bayesian method for assessing the presence of heteroscedastic errors in the outcome variable
 
 library(rstan); library(quantreg)
 options(mc.cores = parallel::detectCores())
