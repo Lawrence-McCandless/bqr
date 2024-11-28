@@ -44,7 +44,7 @@ results <- stan(
   verbose=TRUE
 ) 
 
-results <- summary(results, pars=c("beta"))
+summary(results, pars=c("beta"))
    
 # Calculate maximum likelihood estimate of scale parameter
 tmp.rq <- rq(data.stan$y ~ data.stan$x[,-1], tau=data.stan$tau, method="br") 
