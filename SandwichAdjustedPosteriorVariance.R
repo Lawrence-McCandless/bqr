@@ -1,4 +1,4 @@
-# Robust 95% posterior credible intervals for model parameters using the sandwich adjustment to the 
+# Robust posterior credible intervals for model parameters using the sandwich adjustment to the 
 # posterior covariance proposed by Yang, Wang and He (2016) International Statistical Review, 84, 327-344
 
 library(rstan); library(quantreg)
