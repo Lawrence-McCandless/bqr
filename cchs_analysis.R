@@ -5,13 +5,11 @@ load('cchs.RData');
 
 rq(PHQ9 ~ ccc140 + male + income + canadian + smk + alc + cannabis + hlthprovider + belonging + stressed, tau=0.5, data=cchs)
 
-
 attach(cchs)
 x <- cbind(1, ccc015, male, income, canadian, smk, alc, cannabis, hlthprovider, belonging, stressed)
 detach(cchs)
 
 data.stan <- list(n=dim(x)[1], p=dim(x)[2], y=cchs$PHQ9, x=x, tau=0.5) 
-
 
 ## Bayesian quantile regression using stan
 # Prepare the dataset 
@@ -40,4 +38,3 @@ summary(results, pars=c("beta"))
 ## MCMC diagnostics
 plot(tmp, plotfun="trace")
 plot(tmp, plotfun="hist")
-  
