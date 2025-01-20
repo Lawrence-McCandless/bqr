@@ -36,5 +36,5 @@ results <- stan(
 summary(results, pars=c("beta"))
 
 ## MCMC diagnostics
-plot(tmp, plotfun="trace")
-plot(tmp, plotfun="hist")
+plot(results, plotfun="trace")
+plot(results, plotfun="hist")
